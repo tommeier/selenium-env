@@ -1,0 +1,31 @@
+#!/bin/bash -xe
+
+# Install packages.
+bundle --quiet --binstubs
+
+DUMMY_APP_PATH="spec/dummy"
+
+# Prep dummy app db
+pushd "$DUMMY_APP_PATH"
+  rake db:drop db:setup
+  rake db:test:load
+popd
+
+rm -rf coverage
+
+# Enable to check spec coverage - only 'elses' should be uncovered
+export CHECK_SPEC_COVERAGE=${CHECK_SPEC_COVERAGE:-false}
+
+bin/rake "spec"
+
+#TODO: Multi browser local split with remote clients
+#COVERAGE_GROUP="unit-tests" bin/rake "spec:unit"
+#COVERAGE_GROUP="firefox-features" BROWSER=firefox bin/rake "spec:features"
+#COVERAGE_GROUP="chrome-features" BROWSER=chrome bin/rake "spec:features"
+
+if [ ! -z "$USE_SAUCE" ]; then
+#COVERAGE_GROUP="safari-features" BROWSER=safari bin/rake "spec:features"
+#COVERAGE_GROUP="ie8-features" BROWSER=ie8 bin/rake "spec:features"
+fi
+
+bin/rake "spec:quality"
