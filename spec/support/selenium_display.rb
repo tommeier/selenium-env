@@ -3,6 +3,7 @@ require 'selenium/webdriver/remote/http/persistent'
 require "sauce/config"
 require "sauce/connect"
 
+STDOUT.puts "IN HERE"
 Device = Struct.new(:width, :height)
 
 class SeleniumDisplay

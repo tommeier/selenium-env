@@ -1,0 +1,2 @@
+module SeleniumEnv::Framework
+end

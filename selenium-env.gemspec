@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "actionpack"
   spec.add_dependency "railties"
+  spec.add_dependency 'jasmine', '~> 2.0.0.alpha'
 
   spec.add_development_dependency "activerecord"
   spec.add_development_dependency "bundler", "~> 1.5"
