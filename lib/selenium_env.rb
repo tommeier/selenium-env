@@ -1,3 +1,4 @@
+STDOUT.puts "<<<START OF MAIN FILE>>"
 require "selenium_env/version"
 require "selenium-webdriver"
 Device = Struct.new(:width, :height)
